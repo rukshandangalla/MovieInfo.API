@@ -12,6 +12,7 @@ namespace MovieInfo.Business.Mappers
                 Id = from.Id,
                 Name = from.Name,
                 Poster = from.Poster,
+                Genre = from.Genre,
                 Theater = TheaterDaoToDtoMapper.Convert(from.Theater)
             };
         }

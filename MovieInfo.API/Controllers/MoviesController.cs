@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MovieInfo.Business;
 
 namespace MovieInfo.API.Controllers
@@ -16,14 +16,14 @@ namespace MovieInfo.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCity(int id)
         {
-            var cityToReturn = MoviesFunctions.Current.GetMovieById(id);
+            var retData = MoviesFunctions.Current.GetMovieById(id);
 
-            if (cityToReturn == null)
+            if (retData == null)
             {
                 return NotFound();
             }
 
-            return Ok(cityToReturn);
+            return Ok(retData);
         }
     }
 }
