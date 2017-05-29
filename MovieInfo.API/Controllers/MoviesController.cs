@@ -7,14 +7,14 @@ namespace MovieInfo.API.Controllers
     public class MoviesController : Controller
     {
         [HttpGet]
-        public IActionResult GetCities()
+        public IActionResult GetMovies()
         {
             var retData = MoviesFunctions.Current.GetAllMovies();
             return Ok(retData);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCity(int id)
+        public IActionResult GetMovie(int id)
         {
             var retData = MoviesFunctions.Current.GetMovieById(id);
 
