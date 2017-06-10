@@ -259,3 +259,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/MovieInfo.API/Properties/PublishProfiles/MovieInfoAPI - Web Deploy.pubxml
+/MovieInfo.API/Properties/PublishProfiles/MovieInfoAPI - Web Deploy.pubxml
+*.pubxml
