@@ -13,7 +13,9 @@ namespace MovieInfo.Business.Mappers
                 Name = from.Name,
                 Poster = from.Poster,
                 Genre = from.Genre,
-                Theater = TheaterDaoToDtoMapper.Convert(from.Theater)
+                Theater = from.Theater != null ? TheaterDaoToDtoMapper.Convert(from.Theater) : null,
+                Cast = from.Cast,
+                Trailer = from.Trailer
             };
         }
     }

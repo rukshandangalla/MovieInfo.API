@@ -9,7 +9,7 @@ namespace MovieInfo.DataAccess
         public List<MovieDao> GetAllMovies()
         {
             DBHelper dbHelper = new DBHelper();
-            var query = "SELECT M.id, M.Name, M.Genre, M.Cast, M.Poster, TH.id AS TheaterId, TH.Name AS TheaterName, TH.City FROM Movies M Join Theaters TH ON TH.id = M.TheaterId";
+            var query = "SELECT * FROM Movies";
             var dt = dbHelper.ExecuteSelectCommand(query, CommandType.Text);
 
             List<MovieDao> movies = new List<MovieDao>();
@@ -21,7 +21,8 @@ namespace MovieInfo.DataAccess
                     Id = int.Parse(row["Id"].ToString()),
                     Name = row["Name"].ToString(),
                     Poster = row["Poster"].ToString(),
-                    Theater = new TheaterDao { Id = int.Parse(row["TheaterId"].ToString()), Name = row["TheaterName"].ToString(), City = row["City"].ToString() },
+                    //Theater = new TheaterDao { Id = int.Parse(row["TheaterId"].ToString()), Name = row["TheaterName"].ToString(), City = row["City"].ToString() },
+                    Trailer = row["Trailer"].ToString(),
                     Genre = row["Genre"].ToString(),
                     Cast = row["Cast"].ToString(),
                 });

@@ -13,5 +13,7 @@
         public TheaterDto Theater { get; set; }
 
         public string Cast { get; set; }
+
+        public string Trailer { get; set; }
     }
 }
