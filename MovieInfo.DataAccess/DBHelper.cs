@@ -6,7 +6,7 @@ namespace MovieInfo.DataAccess
 {
     public class DBHelper
     {
-        private const string ConnectionString = "Server=RukshanD;Database=Movies;User Id=sa;Password=d2h21c20;";
+        private const string ConnectionString = "{YOUR_CONNECTIONSTRING_HERE}";
         SqlConnection con = new SqlConnection(ConnectionString);
 
         public DataTable ExecuteSelectCommand(string query, CommandType cmdType)
