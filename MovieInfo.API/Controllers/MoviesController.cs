@@ -1,5 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovieInfo.Business;
+using MovieInfo.Business.Dto;
+using System.Collections.Generic;
 
 namespace MovieInfo.API.Controllers
 {
@@ -7,23 +9,15 @@ namespace MovieInfo.API.Controllers
     public class MoviesController : Controller
     {
         [HttpGet]
-        public IActionResult GetMovies()
+        public List<MovieDto> Get()
         {
-            var retData = MoviesFunctions.Current.GetAllMovies();
-            return Ok(retData);
+            return MoviesFunctions.Current.GetAllMovies();
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetMovie(int id)
+        public MovieDto GetMovie(int id)
         {
-            var retData = MoviesFunctions.Current.GetMovieById(id);
-
-            if (retData == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(retData);
+            return MoviesFunctions.Current.GetMovieById(id);
         }
     }
 }
