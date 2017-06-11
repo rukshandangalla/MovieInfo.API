@@ -21,7 +21,7 @@ namespace MovieInfo.DataAccess
                     Id = int.Parse(row["Id"].ToString()),
                     Name = row["Name"].ToString(),
                     Poster = row["Poster"].ToString(),
-                    //Theater = new TheaterDao { Id = int.Parse(row["TheaterId"].ToString()), Name = row["TheaterName"].ToString(), City = row["City"].ToString() },
+                    Theaters = GetTheatersByMovieId(int.Parse(row["Id"].ToString())),
                     Trailer = row["Trailer"].ToString(),
                     Genre = row["Genre"].ToString(),
                     Cast = row["Cast"].ToString(),
