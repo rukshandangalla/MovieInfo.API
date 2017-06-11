@@ -34,7 +34,7 @@ namespace MovieInfo.DataAccess
         public MovieDao GetMovieById(int id)
         {
             DBHelper dbHelper = new DBHelper();
-            var query = $"SELECT M.id, M.Name, M.Genre, M.Cast, M.Poster, TH.id AS TheaterId, TH.Name AS TheaterName, TH.City from Movies M Join Theaters TH ON TH.id = M.TheaterId WHERE M.id = {id}";
+            var query = $"SELECT * FROM Movies WHERE id = {id}";
 
             var dt = dbHelper.ExecuteSelectCommand(query, CommandType.Text);
             DataRow row = dt.Rows[0];
@@ -44,12 +44,36 @@ namespace MovieInfo.DataAccess
                 Id = int.Parse(row["Id"].ToString()),
                 Name = row["Name"].ToString(),
                 Poster = row["Poster"].ToString(),
-                Theater = new TheaterDao { Id = int.Parse(row["TheaterId"].ToString()), Name = row["TheaterName"].ToString(), City = row["City"].ToString() },
+                Trailer = row["Trailer"].ToString(),
+                Theaters = GetTheatersByMovieId(id),
                 Genre = row["Genre"].ToString(),
                 Cast = row["Cast"].ToString(),
             };
 
             return movie;
+        }
+
+        public List<TheaterDao> GetTheatersByMovieId(int movieId)
+        {
+            DBHelper dbHelper = new DBHelper();
+            var query = $"SELECT TH.id, TH.Name, TH.Location, TH.Map FROM Movies M  Join MovieTheaters MTH ON MTH.MovieId = M.Id Join Theaters TH ON TH.Id = MTH.TheaterId WHERE M.id = {movieId}";
+
+            var dt = dbHelper.ExecuteSelectCommand(query, CommandType.Text);
+
+            List<TheaterDao> theaters = new List<TheaterDao>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                theaters.Add(new TheaterDao
+                {
+                    Id = int.Parse(row["id"].ToString()),
+                    Name = row["Name"].ToString(),
+                    Location = row["Location"].ToString(),
+                    Map = row["Map"].ToString(),
+                });
+            }
+
+            return theaters;
         }
     }
 }

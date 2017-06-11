@@ -31,5 +31,19 @@ namespace MovieInfo.Business
 
             return MovieDaoToDtoMapper.Convert(movie);
         }
+
+        public List<TheaterDto> GetTheatersByMovieId(int movieId)
+        {
+            var retData = new List<TheaterDto>();
+            DataFunctions df = new DataFunctions();
+            var allTheaters = df.GetTheatersByMovieId(movieId);
+
+            foreach (var theater in allTheaters)
+            {
+                retData.Add(TheaterDaoToDtoMapper.Convert(theater));
+            }
+
+            return retData;
+        }
     }
 }

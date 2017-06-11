@@ -19,5 +19,11 @@ namespace MovieInfo.API.Controllers
         {
             return MoviesFunctions.Current.GetMovieById(id);
         }
+
+        [HttpGet("{movieid}/theaters")]
+        public List<TheaterDto> GetTheatersBy(int movieid)
+        {
+            return MoviesFunctions.Current.GetTheatersByMovieId(movieid);
+        }
     }
 }
